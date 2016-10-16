@@ -37,6 +37,10 @@ __Fogalomjegyzék:__
 
 - __teendő:__ egy feladat, ami egy (vagy több) emberhez van rendelve, van egy címe és egy egy rövid leírása (utóbbi nem kötelező), felvételi ideje, határideje, és prioritása
 
+__Használati esetek:__
+
+![Használati esetek](documentation-assets/use-case-1.png)
+
 # 2. Tervezés
 
 # 3. Implementáció
