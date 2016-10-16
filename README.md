@@ -16,21 +16,26 @@ Ennek a programnak a fő célja egy olyan felület létrehozása, ahol a céges 
 
 __Funkcionális követelmények:__
 
-- Regisztráció
-- Bejelentkezés
-- Jogosultságok adása
-- Csak bejelentkezett és jogosultsággal bíró felhasználók által elérhető funkciók:
+- regisztráció
+- bejelentkezés
+- jogosultságok adása
+- csak bejelentkezett és jogosultsággal bíró felhasználók által elérhető funkciók:
   - új feladat felvétele a listára
   - meglévő feladatok szerkesztése
   - meglévő feladat lezárása (ha sikeresen végrehajtotta azt)
   - meglévő feladat törlése
+  - feladatok keresése (címszó szerint) és szűrése (pl. prioritás szerint)
 
 __Nem funkcionális követelmények:__
 
-- __Könnyű áttekinthetőség__: a listának jól átláthatónak kell lennie, csoportosítva, dátumozva, figyelemfelhívó színekkel
-- __Használhatóság__: könnyen használhatónak kell lennie, ügyelni kell az adatfelviteli mezők ésszerű elhelyezésére, és fel kell tüntetni hogy pontosan mi mire való
-- __Megbízhatóság__: jelszóval védett oldal létrehozása, a jelszavak titkosítása, az adatfelviteli mezők pontos ellenőrzése mielőtt azok az adatbázisba kerülnek
-- __Karbantarthatóság__: könnyen lehessen bővíteni a projectet, clean code
+- __könnyű áttekinthetőség:__ a listának jól átláthatónak kell lennie, csoportosítva, dátumozva, figyelemfelhívó színekkel
+- __használhatóság:__ könnyen használhatónak kell lennie, ügyelni kell az adatfelviteli mezők ésszerű elhelyezésére, és fel kell tüntetni hogy pontosan mi mire való
+- __megbízhatóság:__ jelszóval védett oldal létrehozása, a jelszavak titkosítása, az adatfelviteli mezők pontos ellenőrzése mielőtt azok az adatbázisba kerülnek
+- __karbantarthatóság:__ könnyen lehessen bővíteni a projectet, clean code
+
+__Fogalomjegyzék:__
+
+- __teendő:__ egy feladat, ami egy (vagy több) emberhez van rendelve, van egy címe és egy egy rövid leírása (utóbbi nem kötelező), felvételi ideje, határideje, és prioritása
 
 # 2. Tervezés
 
