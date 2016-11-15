@@ -26,3 +26,5 @@ Route.post('/login', 'AuthController.login')
 
 Route.get('/register', 'RegisterController.index')
 Route.post('register', 'RegisterController.doRegister')
+
+Route.get('/logout', 'AuthController.logout')
