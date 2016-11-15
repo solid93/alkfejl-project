@@ -18,3 +18,11 @@
 const Route = use('Route')
 
 Route.on('/').render('home')
+
+//Route.get('/', 'ListController.show')
+
+Route.get('/login', 'AuthController.index')
+Route.post('/login', 'AuthController.login')
+
+Route.get('/register', 'RegisterController.index')
+Route.post('register', 'RegisterController.doRegister')
