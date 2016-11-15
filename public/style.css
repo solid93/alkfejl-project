@@ -6,6 +6,10 @@
   margin-top: 100px;
 }
 
+.md-padding {
+  padding: 5px;
+}
+
 /* login stuff */
 .form-signin {
   max-width: 330px;

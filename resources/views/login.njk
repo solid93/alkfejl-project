@@ -6,6 +6,12 @@
 
       <h2 class="form-signin-heading">Bejelentkezés</h2>
 
+      <div class="bg-danger text-white">
+        <p class="md-padding text-xs-center">
+          {{ error }}
+        </p>
+      </div>
+
       {{ csrfField }}
 
       <label for="email" class="sr-only">Email cím</label>

@@ -18,13 +18,14 @@ class AuthController {
       error: 'Hibás adatokat adott meg!'
     }
 
-    const authCheck = yield request.auth.attempt(email, password)
-
-    if (authCheck) {
+    try {
+      yield request.auth.attempt(email, password)
       return response.redirect('/')
     }
+    catch (e) {
+      yield response.sendView('login', { error: loginMessage.error })
+    }
 
-    yield response.sendView('login', { error: loginMessage.error })
   }
 
   * logout(request, response) {
