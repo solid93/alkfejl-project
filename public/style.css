@@ -2,6 +2,10 @@
   margin-top: 25px;
 }
 
+.md-margin {
+  margin: 5px;
+}
+
 .lg-margin-top {
   margin-top: 100px;
 }

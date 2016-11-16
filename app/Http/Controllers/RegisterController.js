@@ -6,7 +6,7 @@ const Hash = use('Hash')
 class RegisterController {
 
   * index(request, response) {
-    yield response.sendView('register')
+    yield response.sendView('account/register')
   }
 
   * doRegister(request, response) {
@@ -18,10 +18,10 @@ class RegisterController {
     yield user.save()
 
     var registerMessage = {
-      success: "A regisztráció sikeres volt!"
+      success: 'A regisztráció sikeres volt!'
     }
 
-    yield response.sendView('register', { registerMessage: registerMessage.success })
+    yield response.sendView('account/login', { successMessage: registerMessage.success })
   }
 }
 

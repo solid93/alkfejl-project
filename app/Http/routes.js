@@ -17,14 +17,12 @@
 
 const Route = use('Route')
 
-Route.on('/').render('home')
+Route.get('/', 'HomeController.index')
 
-//Route.get('/', 'ListController.show')
+Route.get('/account/login', 'AuthController.index')
+Route.post('/account/login', 'AuthController.login')
 
-Route.get('/login', 'AuthController.index')
-Route.post('/login', 'AuthController.login')
+Route.get('account/register', 'RegisterController.index')
+Route.post('account/register', 'RegisterController.doRegister')
 
-Route.get('/register', 'RegisterController.index')
-Route.post('register', 'RegisterController.doRegister')
-
-Route.get('/logout', 'AuthController.logout')
+Route.get('account/logout', 'AuthController.logout')

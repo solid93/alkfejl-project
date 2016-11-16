@@ -2,15 +2,19 @@
 
 {% block content %}
   <div class="container">
-    <form class="form-signin" role="form" method="POST" action="/login">
+    <form class="form-signin" role="form" method="POST" action="/account/login">
 
       <h2 class="form-signin-heading">Bejelentkezés</h2>
 
-      {% if error %}
-      <div class="bg-danger text-white">
-        <p class="md-padding text-xs-center">
-          {{ error }}
-        </p>
+      {% if errorMessage %}
+      <div class="bg-danger text-white text-xs-center md-padding md-margin">
+        {{ errorMessage }}
+      </div>
+      {% endif %}
+
+      {% if successMessage %}
+      <div class="bg-success text-white text-xs-center md-padding md-margin">
+        {{ successMessage }}
       </div>
       {% endif %}
 

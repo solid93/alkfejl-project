@@ -6,7 +6,7 @@ const Hash = use('Hash')
 class AuthController {
 
   * index(request, response) {
-    yield response.sendView('login')
+    yield response.sendView('account/login')
   }
 
   * login(request, response) {
@@ -14,16 +14,15 @@ class AuthController {
     const password = request.input('password')
 
     const loginMessage = {
-      success: 'Sikeresen bejelentkezett!',
       error: 'Hibás adatokat adott meg!'
     }
 
     try {
       yield request.auth.attempt(email, password)
-      return response.redirect('/')
+      yield response.sendView('home')
     }
     catch (e) {
-      yield response.sendView('login', { error: loginMessage.error })
+      yield response.sendView('account/login', { errorMessage: loginMessage.error })
     }
 
   }

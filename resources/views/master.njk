@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>To-Do List Manager</title>
+    <title>TDLM</title>
     <link rel="icon" href="/assets/favicon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
   </head>
   <body>
 
@@ -24,11 +24,13 @@
 
     <section>
       <div class="container lg-margin-top">
+
         {% block content %}{% endblock %}
 
         {% block footer %}
           <p class="lg-margin-top float-xs-right text-muted"><small>TDLM by Daniel Barborik</small></p>
         {% endblock %}
+
       </div>
     </section>
 
