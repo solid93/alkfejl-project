@@ -18,31 +18,32 @@ class TaskController {
   * edit(request, response) {
     const id = request.param('id')
     const task = yield Database.table('tasks').where('id', id).limit(1)
+
     yield response.sendView('tasks/edit', { task: task })
   }
 
   * store(request, response) {
-    const taskData = request.only('title', 'content', 'priority', 'finished')
+    const task = new Task()
 
-    const rules = {
-      title: 'required',
-      content: 'required'
-    }
+    task.title = request.input('title')
+    task.content = request.input('content')
+    task.priority = request.input('priority')
+    task.finished = request.input('finished', '0')
 
-    const validation = yield Validator.validate(taskData, rules)
+    yield task.save()
+    response.redirect('/tasks')
+  }
 
-    if (validation.fails()) {
-      yield request
-        .withOnly('title', 'content')
-        .andWith({ errors: validation.messages() })
-        .flash()
+  * update(request, response) {
+    const task = yield Task.findBy('id', request.input('id'))
 
-      response.redirect('back')
-      return
-    }
+    task.title = request.input('title')
+    task.content = request.input('content')
+    task.priority = request.input('priority')
+    task.finished = request.input('finished', '0')
 
-    yield Task.create(taskData)
-    response.redirect('/')
+    yield task.save()
+    response.redirect('/tasks')
   }
 
 }

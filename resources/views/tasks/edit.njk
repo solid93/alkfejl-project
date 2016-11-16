@@ -4,6 +4,42 @@
 
   <h1>Feladat szerkesztése</h1>
 
-  {{ task.title }}
+  {% for t in task %}
+
+  {{ form.open({action: 'TaskController.update'}) }}
+
+    {{ csrfField }}
+
+    {{ form.hidden('id', t.id) }}
+
+    <div class="form-group">
+      {{ form.label('Feladat neve') }}
+      {{ form.text('title', t.title, { class: 'form-control' }) }}
+    </div>
+
+    <div class="form-group">
+      {{ form.label('Feladat szövege') }}
+      {{ form.textarea('content', t.content, { class: 'form-control', rows: 10 }) }}
+    </div>
+
+    <div class="form-group">
+      {{ form.label('Prioritás') }}
+      {{ form.selectRange('priority', 1, 6, t.priority, null, {class: 'form-control'}) }}
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label">
+        {{ form.checkbox('finished', '1', t.finished, { class: 'form-check-input' }) }}
+        Befejezve
+      </label>
+    </div>
+
+    {{ form.submit('Mentés', 'publish', { class: 'btn btn-lg btn-primary btn-block' }) }}
+
+  {{ form.close() }}
+
+  {% else %}
+    <h3>Nincs találat.</h3>
+  {% endfor %}
 
 {% endblock %}
