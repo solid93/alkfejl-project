@@ -23,11 +23,19 @@
 
     <div class="form-group">
       {{ form.label('Feladat szövege') }}
-      {{ form.text('content', null, { class: 'form-control' }) }}
+      {{ form.textarea('content', null, { class: 'form-control', rows: 10 }) }}
     </div>
 
     <div class="form-group">
-      {{ form.select('priority', { veryhigh: 'nagyon magas', high: 'magas', normal: 'normál', low: 'alacsony', verylow: 'nagyon alacsony'}) }}
+      {{ form.label('Prioritás') }}
+      {{ form.selectRange('priority', 1, 6, 3, null, {class: 'form-control'}) }}
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label">
+        {{ form.checkbox('finished', 'true', false, { class: 'form-check-input' }) }}
+        Befejezve
+      </label>
     </div>
 
     {{ form.submit('Mentés', 'publish', { class: 'btn btn-lg btn-primary btn-block' }) }}

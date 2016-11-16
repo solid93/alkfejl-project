@@ -21,6 +21,7 @@ Route.get('/', 'HomeController.index')
 
 Route.get('/tasks', 'TaskController.index')
 Route.get('/tasks/create', 'TaskController.create')
+Route.get('/tasks/edit/:id', 'TaskController.edit')
 Route.post('/tasks', 'TaskController.store')
 
 Route.get('/account/login', 'AuthController.index')

@@ -5,7 +5,7 @@
   <h1>Feladatok</h1>
 
   {% for task in tasks %}
-    <h3>{{ task.title }}</h3>
+    <h3><a href="/tasks/edit/{{ task.id }}">{{ task.title }}</a></h3>
     <p>{{ task.content }}</p>
   {% else %}
     <h3>Nincsenek feladatok.</h3>

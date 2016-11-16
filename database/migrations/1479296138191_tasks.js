@@ -9,7 +9,8 @@ class TasksTableSchema extends Schema {
       table.increments()
       table.string('title')
       table.text('content')
-      table.enu('priority', ['very high', 'high', 'normal', 'low', 'very low'])
+      table.integer('priority')
+      table.boolean('finished')
       table.timestamps()
     })
   }

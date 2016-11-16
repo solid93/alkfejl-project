@@ -2,6 +2,7 @@
 
 const Task = use('App/Model/Task')
 const Validator = use('Validator')
+const Database = use('Database')
 
 class TaskController {
 
@@ -14,8 +15,14 @@ class TaskController {
     yield response.sendView('tasks/create')
   }
 
+  * edit(request, response) {
+    const id = request.param('id')
+    const task = yield Database.table('tasks').where('id', id).limit(1)
+    yield response.sendView('tasks/edit', { task: task })
+  }
+
   * store(request, response) {
-    const taskData = request.only('title', 'content')
+    const taskData = request.only('title', 'content', 'priority', 'finished')
 
     const rules = {
       title: 'required',
