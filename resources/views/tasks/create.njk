@@ -1,0 +1,45 @@
+{% extends 'master' %}
+
+{% block content %}
+
+  <h1>Új feladat</h1>
+
+  {% if old('errors') %}
+    <div class="bg-danger text-white text-xs-center md-padding md-margin">
+      {% for error in old('errors') %}
+        <li> {{ error.message }} </li>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {{ form.open({action: 'TaskController.store'}) }}
+
+    {{ csrfField }}
+
+    <div class="form-group">
+      {{ form.label('Feladat neve') }}
+      {{ form.text('title', null, { class: 'form-control' }) }}
+    </div>
+
+    <div class="form-group">
+      {{ form.label('Feladat szövege') }}
+      {{ form.textarea('content', null, { class: 'form-control', rows: 10 }) }}
+    </div>
+
+    <div class="form-group">
+      {{ form.label('Prioritás') }}
+      {{ form.selectRange('priority', 1, 6, 3, null, {class: 'form-control'}) }}
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label">
+        {{ form.checkbox('finished', '1', false, { class: 'form-check-input' }) }}
+        Befejezve
+      </label>
+    </div>
+
+    {{ form.submit('Mentés', 'publish', { class: 'btn btn-lg btn-primary btn-block' }) }}
+
+  {{ form.close() }}
+
+{% endblock %}

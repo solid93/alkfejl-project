@@ -19,6 +19,12 @@ const Route = use('Route')
 
 Route.get('/', 'HomeController.index')
 
+Route.get('/tasks', 'TaskController.index')
+Route.get('/tasks/create', 'TaskController.create')
+Route.post('/tasks/create', 'TaskController.store')
+Route.get('/tasks/edit/:id', 'TaskController.edit')
+Route.post('/tasks/edit', 'TaskController.update')
+
 Route.get('/account/login', 'AuthController.index')
 Route.post('/account/login', 'AuthController.login')
 
