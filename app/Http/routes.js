@@ -20,6 +20,8 @@ const Route = use('Route')
 Route.get('/', 'HomeController.index')
 
 Route.get('/tasks', 'TaskController.index').middleware('auth')
+Route.post('/tasks', 'TaskController.search').middleware('auth')
+Route.get('/tasks/details/:id', 'TaskController.details').middleware('auth')
 Route.get('/tasks/create', 'TaskController.create').middleware('auth')
 Route.post('/tasks/create', 'TaskController.store').middleware('auth')
 Route.get('/tasks/edit/:id', 'TaskController.edit').middleware('auth')
