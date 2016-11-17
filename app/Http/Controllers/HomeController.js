@@ -3,7 +3,7 @@
 class HomeController {
 
   * index(request, response) {
-    yield response.sendView('home')
+    yield response.sendView('index')
   }
   
 }
