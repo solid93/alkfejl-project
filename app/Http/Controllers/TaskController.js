@@ -7,7 +7,19 @@ const Database = use('Database')
 class TaskController {
 
   * index(request, response) {
-    const tasks = yield Task.all()
+    const tasks = yield Task.query().orderBy('id', 'desc').fetch()
+    yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
+  }
+
+  * details(request, response) {
+    const task = yield Task.find(request.param('id'))
+
+    yield response.sendView('tasks/details', { task: task.toJSON() })
+  }
+
+  * search(request, response) {
+    const query = '%' + request.input('query') + '%'
+    const tasks = yield Task.query().where('title', 'LIKE', query).orderBy('updated_at', 'desc').fetch()
     yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
   }
 
@@ -16,10 +28,9 @@ class TaskController {
   }
 
   * edit(request, response) {
-    const id = request.param('id')
-    const task = yield Database.table('tasks').where('id', id).limit(1)
+    const task = yield Task.find(request.param('id'))
 
-    yield response.sendView('tasks/edit', { task: task })
+    yield response.sendView('tasks/edit', { task: task.toJSON() })
   }
 
   * store(request, response) {
