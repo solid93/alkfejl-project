@@ -13,7 +13,10 @@ class TaskController {
 
   * details(request, response) {
     const task = yield Task.find(request.param('id'))
-    yield response.sendView('tasks/details', { task: task.toJSON() })
+    const ids = yield task.users().ids()
+    const selected_users = yield User.query().select('username').where('id', 'IN', ids).fetch()
+    console.log(selected_users.map(String))
+    yield response.sendView('tasks/details', { task: task.toJSON(), selected_users: selected_users.toJSON() })
   }
 
   * search(request, response) {
@@ -32,7 +35,9 @@ class TaskController {
     const task = yield Task.find(request.param('id'))
     const users = yield User.pair('id', 'username')
     const selected_users = yield task.users().ids()
-    yield response.sendView('tasks/edit', { task: task.toJSON(), users: users, selected_users: selected_users.map(String) })
+    const priority = {1 : 'nagyon alacsony', 2: 'alacsony', 3: 'normál', 4: 'magas', 5: 'nagyon magas'}
+    const selected_priority = [task.priority].map(String)
+    yield response.sendView('tasks/edit', { task: task.toJSON(), users: users, selected_users: selected_users.map(String), priority: priority, selected_priority: selected_priority })
   }
 
   * store(request, response) {
