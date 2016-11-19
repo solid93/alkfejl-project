@@ -21,6 +21,7 @@ Route.get('/', 'HomeController.index')
 
 Route.group('auth-routes', () => {
   Route.get('/tasks', 'TaskController.index')
+  Route.get('/tasks/sort/:type', 'TaskController.index')
   Route.post('/tasks', 'TaskController.search')
   Route.get('/tasks/details/:id', 'TaskController.details')
   Route.post('/tasks/details', 'TaskController.finish')

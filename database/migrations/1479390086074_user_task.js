@@ -8,7 +8,6 @@ class UserTaskTableSchema extends Schema {
     this.create('user_task', (table) => {
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.integer('task_id').unsigned().references('id').inTable('tasks')
-      table.timestamps()
     })
   }
 

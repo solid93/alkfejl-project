@@ -24,6 +24,7 @@
       {% elif task.priority === 5 %}
         <button type="button" class="d-inline btn btn-sm btn-danger" disabled>prioritás: nagyon magas</button>
       {% endif %}
+      <button type="button" class="d-inline btn btn-sm btn-secondary" disabled>készítette: {{ created_by.username }}</button>
     </div>
 
   </div>

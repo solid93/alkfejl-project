@@ -17,7 +17,7 @@ class RegisterController {
 
     yield user.save()
 
-    yield response.sendView('account/login', { successMessage: 'A regisztráció sikeres volt!' })
+    yield response.sendView('account/login', { successMessage: 'Sikeres regisztráció, jelentkezzen be!' })
   }
 }
 

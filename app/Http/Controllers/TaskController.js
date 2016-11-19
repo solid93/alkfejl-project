@@ -7,18 +7,32 @@ const User = use('App/Model/User')
 class TaskController {
 
   * index(request, response) {
-    const tasks = yield Task.query().orderBy('id', 'desc').fetch()
+    const sortby = request.param('type')
+    let tasks = null
+    if (sortby === 'by_me') {
+      const created_by = yield request.auth.getUser()
+      tasks = yield Task.query().where('created_by', created_by.id).orderBy('id', 'desc').fetch()
+    }
+    else if (sortby === 'tagged_in') {
+      const user = yield request.auth.getUser()
+      tasks = yield user.tasks().orderBy('id', 'desc').fetch()
+    }
+    else {
+      tasks = yield Task.query().orderBy('id', 'desc').fetch()
+    }
     yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
   }
 
   * details(request, response) {
     const task = yield Task.find(request.param('id'))
+    const created_by = yield User.findBy('id', task.created_by)
     const ids = yield task.users().ids()
     const selected_users = yield User.query().select('username').where('id', 'IN', ids).fetch()
-    yield response.sendView('tasks/details', { task: task.toJSON(), selected_users: selected_users.toJSON() })
+    yield response.sendView('tasks/details', { task: task.toJSON(), created_by: created_by, selected_users: selected_users.toJSON() })
   }
 
   * search(request, response) {
+    console.log(request.param('sortby'))
     const query = '%' + request.input('query') + '%'
     const tasks = yield Task.query().where('title', 'LIKE', query).orderBy('updated_at', 'desc').fetch()
     yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
@@ -41,14 +55,17 @@ class TaskController {
 
   * delete(request, response) {
     const task = yield Task.find(request.param('id'))
+    const created_by = yield User.findBy('id', task.created_by)
     const ids = yield task.users().ids()
     const selected_users = yield User.query().select('username').where('id', 'IN', ids).fetch()
-    yield response.sendView('tasks/delete', { task: task.toJSON(), selected_users: selected_users.toJSON() })
+    yield response.sendView('tasks/delete', { task: task.toJSON(), created_by: created_by, selected_users: selected_users.toJSON() })
   }
 
   * store(request, response) {
+    const created_by = yield request.auth.getUser()
     const users = request.input('users')
     const task = new Task()
+    task.created_by = created_by.id
     task.title = request.input('title')
     task.content = request.input('content')
     task.priority = request.input('priority')
