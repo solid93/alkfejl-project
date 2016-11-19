@@ -13,15 +13,11 @@ class AuthController {
     const email = request.input('email')
     const password = request.input('password')
 
-    const loginMessage = {
-      error: 'Hibás adatokat adott meg!'
-    }
-
     try {
       yield request.auth.attempt(email, password)
     }
     catch (e) {
-      yield response.sendView('account/login', { errorMessage: loginMessage.error })
+      yield response.sendView('account/login', { errorMessage: 'Hibás adatokat adott meg!' })
     }
 
     return response.redirect('/tasks')

@@ -15,7 +15,6 @@ class TaskController {
     const task = yield Task.find(request.param('id'))
     const ids = yield task.users().ids()
     const selected_users = yield User.query().select('username').where('id', 'IN', ids).fetch()
-    console.log(selected_users.map(String))
     yield response.sendView('tasks/details', { task: task.toJSON(), selected_users: selected_users.toJSON() })
   }
 
@@ -40,6 +39,13 @@ class TaskController {
     yield response.sendView('tasks/edit', { task: task.toJSON(), users: users, selected_users: selected_users.map(String), priority: priority, selected_priority: selected_priority })
   }
 
+  * delete(request, response) {
+    const task = yield Task.find(request.param('id'))
+    const ids = yield task.users().ids()
+    const selected_users = yield User.query().select('username').where('id', 'IN', ids).fetch()
+    yield response.sendView('tasks/delete', { task: task.toJSON(), selected_users: selected_users.toJSON() })
+  }
+
   * store(request, response) {
     const users = request.input('users')
     const task = new Task()
@@ -62,6 +68,21 @@ class TaskController {
     yield task.save()
     yield task.users().sync(users)
     response.redirect('/tasks')
+  }
+
+  * remove(request, response) {
+    const task = yield Task.findBy('id', request.input('id'))
+    const userids = yield task.users().ids()
+    yield task.users().detach(userids)
+    yield task.delete()
+    response.redirect('/tasks')
+  }
+
+  * finish(request, response) {
+    const task = yield Task.findBy('id', request.input('id'))
+    task.finished = 1
+    yield task.save()
+    response.redirect('/tasks/details/' + request.input('id'))
   }
 
 }

@@ -23,10 +23,13 @@ Route.group('auth-routes', () => {
   Route.get('/tasks', 'TaskController.index')
   Route.post('/tasks', 'TaskController.search')
   Route.get('/tasks/details/:id', 'TaskController.details')
+  Route.post('/tasks/details', 'TaskController.finish')
   Route.get('/tasks/create', 'TaskController.create')
   Route.post('/tasks/create', 'TaskController.store')
   Route.get('/tasks/edit/:id', 'TaskController.edit')
   Route.post('/tasks/edit', 'TaskController.update')
+  Route.get('/tasks/delete/:id', 'TaskController.delete')
+  Route.post('/tasks/delete', 'TaskController.remove')
 }).middleware('auth')
 
 Route.get('/account/login', 'AuthController.index')
