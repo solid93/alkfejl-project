@@ -24,7 +24,8 @@ class TaskController {
 
   * create(request, response) {
     const users = yield User.pair('id', 'username')
-    yield response.sendView('tasks/create', { users: users })
+    const priority = {1 : 'nagyon alacsony', 2: 'alacsony', 3: 'normál', 4: 'magas', 5: 'nagyon magas'}
+    yield response.sendView('tasks/create', { users: users, priority: priority })
   }
 
   * edit(request, response) {

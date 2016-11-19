@@ -24,7 +24,7 @@ class AuthController {
       yield response.sendView('account/login', { errorMessage: loginMessage.error })
     }
 
-    return response.redirect('/')
+    return response.redirect('/tasks')
   }
 
   * logout(request, response) {

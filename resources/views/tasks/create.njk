@@ -19,18 +19,18 @@
     {{ csrfField }}
 
     <div class="form-group">
-      {{ form.label('Feladat neve') }}
+      {{ form.label('Feladat rövid leírása') }}
       {{ form.text('title', null, { class: 'form-control' }) }}
     </div>
 
     <div class="form-group">
-      {{ form.label('Feladat szövege') }}
+      {{ form.label('Feladat hosszú leírása') }}
       {{ form.textarea('content', null, { class: 'form-control', rows: 10 }) }}
     </div>
 
     <div class="form-group">
       {{ form.label('Feladat prioritása') }}
-      {{ form.selectRange('priority', 1, 6, 3, null, { class: 'form-control' }) }}
+      {{ form.select('priority', priority, ['3'], null, { class: 'form-control' }) }}
     </div>
 
     <div class="form-group">
