@@ -1,5 +1,7 @@
 {% extends 'master' %}
 
+{% set beautify = "true" %}
+
 {% block content %}
 
   <h1>Feladat szerkesztése</h1>
@@ -22,7 +24,7 @@
 
     <div class="form-group">
       {{ form.label('Prioritás') }}
-      {{ form.selectRange('priority', 1, 6, task.priority, null, {class: 'form-control'}) }}
+      {{ form.select('priority', priority, selected_priority, null, { class: 'form-control' }) }}
     </div>
 
     <div class="form-group">
@@ -40,5 +42,7 @@
     {{ form.submit('Mentés', 'publish', { class: 'btn btn-lg btn-primary btn-block' }) }}
 
   {{ form.close() }}
+
+  <p class="mt-1"><a href="/tasks">Vissza</a></p>
 
 {% endblock %}

@@ -3,7 +3,57 @@
 {% block content %}
 
   <h1>{{ task.title }}</h1>
+
+  <div class="row my-1 bg-faded py-1">
+
+    <div class="col-md-6">
+      {% if task.finished === 1 %}
+        <button type="button" class="d-inline btn btn-sm btn-success" disabled>státusz: kész</button>
+      {% else %}
+        <button type="button" class="d-inline btn btn-sm btn-warning" disabled>státusz: to-do</button>
+      {% endif %}
+
+      {% if task.priority === 1 %}
+        <button type="button" class="d-inline btn btn-sm btn-secondary" disabled>prioritás: nagyon alacsony</button>
+      {% elif task.priority === 2 %}
+        <button type="button" class="d-inline btn btn-sm btn-info" disabled>prioritás: alacsony</button>
+      {% elif task.priority === 3 %}
+        <button type="button" class="d-inline btn btn-sm btn-primary" disabled>prioritás: normál</button>
+      {% elif task.priority === 4 %}
+        <button type="button" class="d-inline btn btn-sm btn-warning" disabled>prioritás: magas</button>
+      {% elif task.priority === 5 %}
+        <button type="button" class="d-inline btn btn-sm btn-danger" disabled>prioritás: nagyon magas</button>
+      {% endif %}
+      <button type="button" class="d-inline btn btn-sm btn-secondary" disabled>készítette: {{ created_by.username }}</button>
+    </div>
+
+    <div class="col-md-6">
+      {% if task.finished === 0 %}
+        {{ form.open({action: 'TaskController.finish', class: 'float-md-right' }) }}
+          {{ csrfField }}
+          {{ form.hidden('id', task.id) }}
+          {{ form.submit('feladat befejezése', 'finish', { class: 'btn btn-success btn-sm' }) }}
+          <a href="/tasks/edit/{{ task.id }}" class="btn btn-warning btn-sm">szerkesztés</a>
+          <a href="/tasks/delete/{{ task.id }}" class="btn btn-danger btn-sm">törlés</a>
+        {{ form.close() }}
+      {% else %}
+        <div class="float-md-right">
+          <a href="/tasks/edit/{{ task.id }}" class="btn btn-warning btn-sm">szerkesztés</a>
+          <a href="/tasks/delete/{{ task.id }}" class="btn btn-danger btn-sm">törlés</a>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+
   <p>{{ task.content }}</p>
-  <a href="/tasks">Vissza</a>
+
+  <div class="row bg-faded">
+    <p class="pt-1 mx-1">
+      kikhez tartozik a feladat: [ <strong>{% for user in selected_users %} {{ user.username }} {% endfor %}</strong> ]
+    </p>
+  </div>
+
+  <p class="mt-1"><a href="/tasks">Vissza</a></p>
 
 {% endblock %}

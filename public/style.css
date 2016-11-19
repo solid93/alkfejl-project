@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&subset=latin-ext');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.bg-finished {
+  background-color: #D8D8D8;
+}
+
 .extratopspace {
   margin-top: 80px;
 }

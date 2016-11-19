@@ -2,36 +2,21 @@
 
 {% block content %}
 
-  <div class="text-xs-center mt-3">
+  <div class="mt-3">
 
     <h1>To-Do List Manager</h1>
+    
     <p class="lead">
       Készítette: Barborik Dániel / MOZ64X
     </p>
 
-    <div class="container mt-3">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit lectus et egestas consequat. Etiam ut mattis sem. Curabitur facilisis dui fringilla nulla volutpat, a cursus leo viverra. Proin quis ullamcorper tortor, in lobortis justo. Pellentesque purus metus, porttitor ac convallis vel, porttitor sed neque. In urna erat, rutrum nec nisl sit amet, tempus rhoncus erat. Nulla et odio at dolor viverra hendrerit ut in sem. Sed vitae nisl et erat cursus viverra quis et risus. Quisque lorem mi, consequat sed sapien at, gravida pellentesque diam. Mauris dapibus sollicitudin nisl, sit amet congue dui sollicitudin ac. Vestibulum suscipit at augue porttitor imperdiet. Phasellus ac porttitor metus. Integer a lacus et arcu tincidunt consectetur vitae vel nunc. In hac habitasse platea dictumst.
+    </p>
 
-    {% if currentUser %}
-      <p>
-        Belépve mint {{ currentUser.username }}.
-      </p>
-
-      <a href="account/logout" class="btn btn-lg btn-primary">Kijelentkezés</a>
-    {% else %}
-      <div class="row">
-
-        <div class="col-md-6">
-          <a href="account/register" class="btn btn-lg btn-primary float-xs-right">Regisztráció</a>
-        </div>
-
-        <div class="col-md-6">
-          <a href="account/login" class="btn btn-lg btn-primary float-xs-left">Bejelentkezés</a>
-        </div>
-
-      </div>
-    {% endif %}
-
-    </div>
+    <p>
+      Etiam sagittis porttitor rutrum. Nam pellentesque luctus sem, nec efficitur lorem iaculis rutrum. Vestibulum mi felis, dictum a finibus eget, consectetur vel massa. Vestibulum eu ante et justo lobortis dapibus non eget lectus. Pellentesque bibendum eu felis vel viverra. Vestibulum lectus quam, volutpat sed convallis a, dictum ac eros. Integer nec nunc sit amet felis consequat tincidunt ac id nibh. Ut lobortis ex eros, eget rutrum libero imperdiet vitae. Suspendisse consequat arcu et metus elementum, non iaculis nulla consequat. Aliquam vehicula diam et pretium iaculis.
+    </p>
 
   </div>
 {% endblock %}
