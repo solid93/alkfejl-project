@@ -40,7 +40,7 @@ class TaskController {
     task.title = request.input('title')
     task.content = request.input('content')
     task.priority = request.input('priority')
-    task.finished = request.input('finished', '0')
+    task.finished = false
     yield task.save()
     yield task.users().attach(users)
     response.redirect('/tasks')

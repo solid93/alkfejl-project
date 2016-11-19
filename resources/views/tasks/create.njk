@@ -1,5 +1,7 @@
 {% extends 'master' %}
 
+{% set beautify = "true" %}
+
 {% block content %}
 
   <h1>Új feladat</h1>
@@ -27,20 +29,13 @@
     </div>
 
     <div class="form-group">
-      {{ form.label('Prioritás') }}
+      {{ form.label('Feladat prioritása') }}
       {{ form.selectRange('priority', 1, 6, 3, null, { class: 'form-control' }) }}
     </div>
 
     <div class="form-group">
-      {{ form.label('Tagok') }}
-      {{ form.select('users', users, null, 'Kinek a feladata?', { class: 'form-control', multiple: 'multiple' }) }}
-    </div>
-
-    <div class="form-check">
-      <label class="form-check-label">
-        {{ form.checkbox('finished', '1', false, { class: 'form-check-input' }) }}
-        Befejezve
-      </label>
+      {{ form.label('Kihez legyen rendelve a feladat?') }}
+      {{ form.select('users[]', users, null, null, { class: 'form-control', multiple: 'multiple' }) }}
     </div>
 
     {{ form.submit('Mentés', 'publish', { class: 'btn btn-lg btn-primary btn-block' }) }}
