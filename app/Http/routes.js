@@ -19,13 +19,15 @@ const Route = use('Route')
 
 Route.get('/', 'HomeController.index')
 
-Route.get('/tasks', 'TaskController.index').middleware('auth')
-Route.post('/tasks', 'TaskController.search').middleware('auth')
-Route.get('/tasks/details/:id', 'TaskController.details').middleware('auth')
-Route.get('/tasks/create', 'TaskController.create').middleware('auth')
-Route.post('/tasks/create', 'TaskController.store').middleware('auth')
-Route.get('/tasks/edit/:id', 'TaskController.edit').middleware('auth')
-Route.post('/tasks/edit', 'TaskController.update').middleware('auth')
+Route.group('auth-routes', () => {
+  Route.get('/tasks', 'TaskController.index')
+  Route.post('/tasks', 'TaskController.search')
+  Route.get('/tasks/details/:id', 'TaskController.details')
+  Route.get('/tasks/create', 'TaskController.create')
+  Route.post('/tasks/create', 'TaskController.store')
+  Route.get('/tasks/edit/:id', 'TaskController.edit')
+  Route.post('/tasks/edit', 'TaskController.update')
+}).middleware('auth')
 
 Route.get('/account/login', 'AuthController.index')
 Route.post('/account/login', 'AuthController.login')

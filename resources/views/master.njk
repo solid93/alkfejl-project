@@ -35,10 +35,10 @@
           <span class="navbar-text float-xs-left text-muted mr-1">
             Üdv, <b>{{ currentUser.username }}</b>!
           </span>
-          <a href="account/logout" class="btn btn-outline-danger float-xs-left">Kijelentkezés</a>
+          <a href="/account/logout" class="btn btn-outline-danger float-xs-left">Kijelentkezés</a>
         {% else %}
-          <a href="account/login" class="btn btn-outline-success float-xs-left mr-1">Bejelentkezés</a>
-          <a href="account/register" class="btn btn-outline-warning float-xs-left">Regisztráció</a>
+          <a href="/account/login" class="btn btn-outline-success float-xs-left mr-1">Bejelentkezés</a>
+          <a href="/account/register" class="btn btn-outline-warning float-xs-left">Regisztráció</a>
         {% endif %}
       </form>
     </nav>
