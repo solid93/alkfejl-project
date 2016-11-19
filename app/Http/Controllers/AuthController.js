@@ -19,12 +19,12 @@ class AuthController {
 
     try {
       yield request.auth.attempt(email, password)
-      yield response.redirect('/')
     }
     catch (e) {
       yield response.sendView('account/login', { errorMessage: loginMessage.error })
     }
 
+    return response.redirect('/')
   }
 
   * logout(request, response) {
