@@ -2,7 +2,7 @@
 
 const Task = use('App/Model/Task')
 const User = use('App/Model/User')
-//const Validator = use('Validator')
+const Validator = use('Validator')
 
 class TaskController {
 
@@ -62,28 +62,78 @@ class TaskController {
   }
 
   * store(request, response) {
+
+    const data = request.only('title', 'content', 'priority', 'users')
+
+    const rules = {
+      title: 'required',
+      priority: 'required|range:0,6',
+      users: 'required'
+    }
+
+    const messages = {
+      required: '{{field}} mező kitöltése kötelező.',
+      'title.required': 'A "Feladat rövid leírása" mező kitöltése kötelező.',
+      'priority.required': 'A "Feladat prioritása" mező kitöltése kötelező.',
+      'users.required': 'A "Kihez legyen rendelve a feladat?" mező kitöltése kötelező.'
+    }
+
+    const validation = yield Validator.validate(data, rules, messages)
+
+    if (validation.fails()){
+      yield request.withOnly('title', 'content', 'priority', 'users').andWith({ errors: validation.messages() }).flash()
+      response.redirect('back')
+      return
+    }
+
     const created_by = yield request.auth.getUser()
-    const users = request.input('users')
+
     const task = new Task()
     task.created_by = created_by.id
-    task.title = request.input('title')
-    task.content = request.input('content')
-    task.priority = request.input('priority')
+    task.title = data.title
+    task.content = data.content
+    task.priority = data.priority
     task.finished = false
     yield task.save()
-    yield task.users().attach(users)
+    yield task.users().attach(data.users)
+
     response.redirect('/tasks')
   }
 
   * update(request, response) {
-    const users = request.input('users') // todo: handle null /no option selected/
-    const task = yield Task.findBy('id', request.input('id'))
-    task.title = request.input('title')
-    task.content = request.input('content')
-    task.priority = request.input('priority')
-    task.finished = request.input('finished', '0')
+
+    const data = request.only('id', 'title', 'content', 'priority', 'users', 'finished')
+
+    const rules = {
+      id: 'required',
+      title: 'required',
+      priority: 'required|range:0,6',
+      users: 'required'
+    }
+
+    const messages = {
+      required: '{{field}} mező kitöltése kötelező.',
+      'id.required': 'Hiányzik az azonosító.',
+      'title.required': 'A "Feladat rövid leírása" mező kitöltése kötelező.',
+      'priority.required': 'A "Feladat prioritása" mező kitöltése kötelező.',
+      'users.required': 'A "Kihez legyen rendelve a feladat?" mező kitöltése kötelező.'
+    }
+
+    const validation = yield Validator.validate(data, rules, messages)
+
+    if (validation.fails()){
+      yield request.withOnly('id', 'title', 'content', 'priority', 'users', 'finished').andWith({ errors: validation.messages() }).flash()
+      response.redirect('back')
+      return
+    }
+
+    const task = yield Task.findBy('id', data.id)
+    task.title = data.title
+    task.content = data.content
+    task.priority = data.priority
+    task.finished = data.finished || '0'
     yield task.save()
-    yield task.users().sync(users)
+    yield task.users().sync(data.users)
     response.redirect('/tasks')
   }
 
