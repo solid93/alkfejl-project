@@ -4,6 +4,12 @@
 
   <h1>Feladatok</h1>
 
+  {% if errorMessage %}
+    <div class="bg-danger text-white text-xs-center my-1 p-1">
+      {{ errorMessage }}
+    </div>
+  {% endif %}
+
   <div class="row my-2">
 
     <div class="col-md-8">

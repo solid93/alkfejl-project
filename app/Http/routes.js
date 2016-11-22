@@ -31,7 +31,18 @@ Route.group('auth-routes', () => {
   Route.post('/tasks/edit', 'TaskController.update')
   Route.get('/tasks/delete/:id', 'TaskController.delete')
   Route.post('/tasks/delete', 'TaskController.remove')
-}).middleware('auth')
+
+  Route.get('/roles', 'RoleController.index')
+  Route.get('/roles/create', 'RoleController.create')
+  Route.post('/roles/create', 'RoleController.store')
+
+  Route.get('/roles/edit/:id', 'RoleController.edit')
+  Route.post('/roles/edit', 'RoleController.update')
+
+  Route.get('/roles/delete/:id', 'RoleController.delete')
+  Route.post('/roles/delete', 'RoleController.remove')
+  
+}).middleware('auth', 'role')
 
 Route.get('/account/login', 'AuthController.index')
 Route.post('/account/login', 'AuthController.login')

@@ -1,0 +1,40 @@
+{% extends 'master' %}
+
+{% block content %}
+
+  <h1>Új jogosultság</h1>
+
+  {% if old('errors') %}
+    <div class="bg-danger text-white text-xs-center m-1 p-1">
+      {% for error in old('errors') %}
+        <li> {{ error.message }} </li>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {{ form.open({action: 'RoleController.store'}) }}
+
+    {{ csrfField }}
+
+    <div class="form-group">
+      {{ form.label('Jogosultság neve') }}
+      {{ form.text('title', null, { class: 'form-control' }) }}
+    </div>
+
+    <div class="form-group">
+      {{ form.label('Jogosultság rövid leírása') }}
+      {{ form.text('details', null, { class: 'form-control' }) }}
+    </div>
+
+    <div class="form-group">
+      {{ form.label('Kik legyenek a jogosultságban?') }}
+      {{ form.select('users[]', users, null, null, { class: 'form-control', multiple: 'multiple' }) }}
+    </div>
+
+    {{ form.submit('Mentés', 'publish', { class: 'btn btn-lg btn-primary btn-block' }) }}
+
+  {{ form.close() }}
+
+  <p class="mt-1"><a href="/roles">Vissza</a></p>
+
+{% endblock %}

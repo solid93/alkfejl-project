@@ -39,12 +39,24 @@ class TaskController {
   }
 
   * create(request, response) {
+
+    if (!request.roles.hasOwnProperty('admin') || !request.roles.hasOwnProperty('create')) {
+      yield response.sendView('tasks/index', { errorMessage: 'Ehhez nincs jogosultsága!' })
+      return
+    }
+
     const users = yield User.pair('id', 'username')
     const priority = {1 : 'nagyon alacsony', 2: 'alacsony', 3: 'normál', 4: 'magas', 5: 'nagyon magas'}
     yield response.sendView('tasks/create', { users: users, priority: priority })
   }
 
   * edit(request, response) {
+
+    if (!request.roles.hasOwnProperty('admin') || !request.roles.hasOwnProperty('edit')) {
+      yield response.sendView('tasks/index', { errorMessage: 'Ehhez nincs jogosultsága!' })
+      return
+    }
+
     const task = yield Task.find(request.param('id'))
     const users = yield User.pair('id', 'username')
     const selected_users = yield task.users().ids()
@@ -54,6 +66,12 @@ class TaskController {
   }
 
   * delete(request, response) {
+
+    if (!request.roles.hasOwnProperty('admin') || !request.roles.hasOwnProperty('delete')) {
+      yield response.sendView('tasks/index', { errorMessage: 'Ehhez nincs jogosultsága!' })
+      return
+    }
+
     const task = yield Task.find(request.param('id'))
     const created_by = yield User.findBy('id', task.created_by)
     const ids = yield task.users().ids()
