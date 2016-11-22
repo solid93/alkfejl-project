@@ -1,10 +1,16 @@
 {% extends 'master' %}
 
-{% set beautify = "true" %}
-
 {% block content %}
 
   <h1>Feladat szerkesztése</h1>
+
+  {% if old('errors') %}
+    <div class="bg-danger text-white text-xs-center m-1 p-1">
+      {% for error in old('errors') %}
+        <li> {{ error.message }} </li>
+      {% endfor %}
+    </div>
+  {% endif %}
 
   {{ form.open({action: 'TaskController.update'}) }}
 
@@ -13,29 +19,29 @@
     {{ form.hidden('id', task.id) }}
 
     <div class="form-group">
-      {{ form.label('Feladat neve') }}
+      {{ form.label('Feladat rövid leírása') }}
       {{ form.text('title', task.title, { class: 'form-control' }) }}
     </div>
 
     <div class="form-group">
-      {{ form.label('Feladat szövege') }}
+      {{ form.label('Feladat hosszú leírása') }}
       {{ form.textarea('content', task.content, { class: 'form-control', rows: 10 }) }}
     </div>
 
     <div class="form-group">
-      {{ form.label('Prioritás') }}
+      {{ form.label('Feladat prioritása') }}
       {{ form.select('priority', priority, selected_priority, null, { class: 'form-control' }) }}
     </div>
 
     <div class="form-group">
-      {{ form.label('Tagok') }}
+      {{ form.label('Kihez legyen rendelve a feladat?') }}
       {{ form.select('users[]', users, selected_users, null, { class: 'form-control', multiple: 'true' }) }}
     </div>
 
     <div class="form-check">
       <label class="form-check-label">
         {{ form.checkbox('finished', '1', task.finished, { class: 'form-check-input' }) }}
-        Befejezve
+        Feladat befejezve
       </label>
     </div>
 
