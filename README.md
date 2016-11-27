@@ -4,6 +4,15 @@ A féléves projectem az ELTE-IK/Alkalmazások fejlesztése tantárgyhoz egy to-
 
 Készítette: Barborik Dániel / MOZ64X / danb at outlook dot hu
 
+# Futtatás
+
+1. clone
+2. npm install
+3. '.env.example' fájl átnevezése '.env'-re
+4. npm run
+
+5. az admin funkciók eléréséhez fiók: admin@admin.hu / admin
+
 # 1. Követelményanalízis
 
 __Célkitűzés:__
@@ -102,6 +111,9 @@ Jogosultság szerkesztése
 Jogosultság törlés
 ![Jogosultság törlés](documentation-assets/progress-images/final/jogosultsagtorles.PNG)
 
+### Adatbázis-kapcsolatok
+
+![Adatbázis-kapcsolatok](documentation-assets/db-relations-1.png)
 
 # 3. Implementáció
 
