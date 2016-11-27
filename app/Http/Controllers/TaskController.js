@@ -9,6 +9,7 @@ class TaskController {
   * index(request, response) {
     const sortby = request.param('type')
     let tasks = null
+
     if (sortby === 'by_me') {
       const created_by = yield request.auth.getUser()
       tasks = yield Task.query().where('created_by', created_by.id).orderBy('id', 'desc').fetch()
@@ -20,6 +21,7 @@ class TaskController {
     else {
       tasks = yield Task.query().orderBy('id', 'desc').fetch()
     }
+
     yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
   }
 
@@ -32,7 +34,6 @@ class TaskController {
   }
 
   * search(request, response) {
-    console.log(request.param('sortby'))
     const query = '%' + request.input('query') + '%'
     const tasks = yield Task.query().where('title', 'LIKE', query).orderBy('updated_at', 'desc').fetch()
     yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
@@ -40,8 +41,8 @@ class TaskController {
 
   * create(request, response) {
 
-    if (!request.roles.hasOwnProperty('admin') || !request.roles.hasOwnProperty('create')) {
-      yield response.sendView('tasks/index', { errorMessage: 'Ehhez nincs jogosultsága!' })
+    if ( !(request.roles.hasOwnProperty('admin') || request.roles.hasOwnProperty('create')) ) {
+      yield response.sendView('errors/unauthorized', { errorMessage: 'Ehhez nincs jogosultságod :(' })
       return
     }
 
@@ -52,8 +53,8 @@ class TaskController {
 
   * edit(request, response) {
 
-    if (!request.roles.hasOwnProperty('admin') || !request.roles.hasOwnProperty('edit')) {
-      yield response.sendView('tasks/index', { errorMessage: 'Ehhez nincs jogosultsága!' })
+    if ( !(request.roles.hasOwnProperty('admin') || request.roles.hasOwnProperty('edit')) ) {
+      yield response.sendView('errors/unauthorized', { errorMessage: 'Ehhez nincs jogosultságod :(' })
       return
     }
 
@@ -67,8 +68,8 @@ class TaskController {
 
   * delete(request, response) {
 
-    if (!request.roles.hasOwnProperty('admin') || !request.roles.hasOwnProperty('delete')) {
-      yield response.sendView('tasks/index', { errorMessage: 'Ehhez nincs jogosultsága!' })
+    if ( !(request.roles.hasOwnProperty('admin') || request.roles.hasOwnProperty('delete')) ) {
+      yield response.sendView('errors/unauthorized', { errorMessage: 'Ehhez nincs jogosultságod :(' })
       return
     }
 

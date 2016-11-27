@@ -4,13 +4,7 @@
 
   <h1>Jogosultságok</h1>
 
-  {% if errorMessage %}
-    <div class="bg-danger text-white text-xs-center my-1 p-1">
-      {{ errorMessage }}
-    </div>
-  {% endif %}
-
-  <a href="/roles/create">Új jogosultság</a>
+  <a href="/roles/create" class="btn btn-primary">Új jogosultság</a>
 
   <div class="my-2">
     <table class="table table-hover">
@@ -30,7 +24,7 @@
             <td>{{ role.id }}</td>
             <td>{{ role.title }}</td>
             <td>{{ role.details }}</td>
-            <td class="float-xs-right"><a href="/" class="btn btn-warning btn-sm mr-1">szerkesztés</a><a href="/" class="btn btn-danger btn-sm">törlés</a></td>
+            <td class="float-xs-right"><a href="/roles/edit/{{ role.id }}" class="btn btn-warning btn-sm mr-1">szerkesztés</a><a href="/roles/delete/{{ role.id }}" class="btn btn-danger btn-sm">törlés</a></td>
           </tr>
         {% endfor %}
       </tbody>
