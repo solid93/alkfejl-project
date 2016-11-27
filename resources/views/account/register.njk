@@ -2,9 +2,17 @@
 
 {% block content %}
 
+  {% if old('errors') %}
+    <div class="bg-danger text-white text-xs-center m-1 p-1">
+      {% for error in old('errors') %}
+        <li> {{ error.message }} </li>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   {{ form.open({action: 'RegisterController.register', class: 'form-signin' }) }}
 
-    <h2 class="form-signin-heading">Bejelentkezés</h2>
+    <h2 class="form-signin-heading">Regisztráció</h2>
 
     {{ csrfField }}
 
