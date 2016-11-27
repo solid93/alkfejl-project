@@ -43,6 +43,66 @@ __Használati esetek:__
 
 # 2. Tervezés
 
+### Oldaltérkép
+
+__publikus:__
+
+- főoldal
+- bejelentkezés
+- regisztráció
+
+__bejelentkezett:__
+
+- feladatok
+  - új feladat
+  - feladat megtekintése
+    - feladat szerkesztése
+    - feladat törlése
+
+- jogosultságok
+  - új jogosultságok
+  - jogosultság szerkesztése
+  - jogosultság törlése
+
+### Design-tervek végső megvalósítása
+
+Főoldal
+![Főoldal](documentation-assets/progress-images/final/fooldal.png)
+
+Regisztráció
+![Regisztráció](documentation-assets/progress-images/final/regisztracio.png)
+
+Bejelentkezés
+![Bejelentkezés](documentation-assets/progress-images/final/bejelentkezes.png)
+
+Feladatok
+![Feladatok](documentation-assets/progress-images/final/feladatok.png)
+
+Új feladat
+![Új feladat](documentation-assets/progress-images/final/ujfeladat.png)
+
+Feladat részletek
+![Feladat részletek](documentation-assets/progress-images/final/feladatreszletek.png)
+
+Feladat szerkesztés
+![Feladat szerkesztés](documentation-assets/progress-images/final/feladatszerkesztes.png)
+
+Feladat törlés
+![Feladat törlés](documentation-assets/progress-images/final/feladattorles.png)
+
+Jogosultságok
+![Jogosultságok](documentation-assets/progress-images/final/jogosultsagok.png)
+
+Új jogosultság
+![Új jogosultság](documentation-assets/progress-images/final/ujjogosultsag.png)
+
+Jogosultság szerkesztése
+![Jogosultság szerkesztése](documentation-assets/progress-images/final/jogosultsagszerkesztes.png)
+
+Jogosultság törlés
+![Jogosultság törlés](documentation-assets/progress-images/final/jogosultsagtorles.png)
+
+
 # 3. Implementáció
 
 # 4. Tesztelés
