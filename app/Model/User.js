@@ -16,6 +16,10 @@ class User extends Lucid {
     return this.belongsToMany('App/Model/Task', 'user_task', 'user_id', 'task_id')
   }
 
+  roles () {
+    return this.belongsToMany('App/Model/Role', 'user_role', 'user_id', 'role_id')
+  }
+
 }
 
 module.exports = User

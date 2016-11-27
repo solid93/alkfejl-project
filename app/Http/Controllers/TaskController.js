@@ -9,6 +9,7 @@ class TaskController {
   * index(request, response) {
     const sortby = request.param('type')
     let tasks = null
+
     if (sortby === 'by_me') {
       const created_by = yield request.auth.getUser()
       tasks = yield Task.query().where('created_by', created_by.id).orderBy('id', 'desc').fetch()
@@ -20,6 +21,7 @@ class TaskController {
     else {
       tasks = yield Task.query().orderBy('id', 'desc').fetch()
     }
+
     yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
   }
 
@@ -32,19 +34,30 @@ class TaskController {
   }
 
   * search(request, response) {
-    console.log(request.param('sortby'))
     const query = '%' + request.input('query') + '%'
     const tasks = yield Task.query().where('title', 'LIKE', query).orderBy('updated_at', 'desc').fetch()
     yield response.sendView('tasks/index', { tasks: tasks.toJSON() })
   }
 
   * create(request, response) {
+
+    if ( !(request.roles.hasOwnProperty('admin') || request.roles.hasOwnProperty('create')) ) {
+      yield response.sendView('errors/unauthorized', { errorMessage: 'Ehhez nincs jogosultságod :(' })
+      return
+    }
+
     const users = yield User.pair('id', 'username')
     const priority = {1 : 'nagyon alacsony', 2: 'alacsony', 3: 'normál', 4: 'magas', 5: 'nagyon magas'}
     yield response.sendView('tasks/create', { users: users, priority: priority })
   }
 
   * edit(request, response) {
+
+    if ( !(request.roles.hasOwnProperty('admin') || request.roles.hasOwnProperty('edit')) ) {
+      yield response.sendView('errors/unauthorized', { errorMessage: 'Ehhez nincs jogosultságod :(' })
+      return
+    }
+
     const task = yield Task.find(request.param('id'))
     const users = yield User.pair('id', 'username')
     const selected_users = yield task.users().ids()
@@ -54,6 +67,12 @@ class TaskController {
   }
 
   * delete(request, response) {
+
+    if ( !(request.roles.hasOwnProperty('admin') || request.roles.hasOwnProperty('delete')) ) {
+      yield response.sendView('errors/unauthorized', { errorMessage: 'Ehhez nincs jogosultságod :(' })
+      return
+    }
+
     const task = yield Task.find(request.param('id'))
     const created_by = yield User.findBy('id', task.created_by)
     const ids = yield task.users().ids()

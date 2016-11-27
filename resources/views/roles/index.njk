@@ -1,0 +1,35 @@
+{% extends 'master' %}
+
+{% block content %}
+
+  <h1>Jogosultságok</h1>
+
+  <a href="/roles/create" class="btn btn-primary">Új jogosultság</a>
+
+  <div class="my-2">
+    <table class="table table-hover">
+
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Név</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for role in roles %}
+          <tr>
+            <td>{{ role.id }}</td>
+            <td>{{ role.title }}</td>
+            <td>{{ role.details }}</td>
+            <td class="float-xs-right"><a href="/roles/edit/{{ role.id }}" class="btn btn-warning btn-sm mr-1">szerkesztés</a><a href="/roles/delete/{{ role.id }}" class="btn btn-danger btn-sm">törlés</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  </div>
+
+{% endblock %}
