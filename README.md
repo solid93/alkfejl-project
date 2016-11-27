@@ -67,40 +67,40 @@ __bejelentkezett:__
 ### Design-tervek végső megvalósítása
 
 Főoldal
-![Főoldal](documentation-assets/progress-images/final/fooldal.png)
+![Főoldal](documentation-assets/progress-images/final/fooldal.PNG)
 
 Regisztráció
-![Regisztráció](documentation-assets/progress-images/final/regisztracio.png)
+![Regisztráció](documentation-assets/progress-images/final/regisztracio.PNG)
 
 Bejelentkezés
-![Bejelentkezés](documentation-assets/progress-images/final/bejelentkezes.png)
+![Bejelentkezés](documentation-assets/progress-images/final/bejelentkezes.PNG)
 
 Feladatok
-![Feladatok](documentation-assets/progress-images/final/feladatok.png)
+![Feladatok](documentation-assets/progress-images/final/feladatok.PNG)
 
 Új feladat
-![Új feladat](documentation-assets/progress-images/final/ujfeladat.png)
+![Új feladat](documentation-assets/progress-images/final/ujfeladat.PNG)
 
 Feladat részletek
-![Feladat részletek](documentation-assets/progress-images/final/feladatreszletek.png)
+![Feladat részletek](documentation-assets/progress-images/final/feladatreszletek.PNG)
 
 Feladat szerkesztés
-![Feladat szerkesztés](documentation-assets/progress-images/final/feladatszerkesztes.png)
+![Feladat szerkesztés](documentation-assets/progress-images/final/feladatszerkesztes.PNG)
 
 Feladat törlés
-![Feladat törlés](documentation-assets/progress-images/final/feladattorles.png)
+![Feladat törlés](documentation-assets/progress-images/final/feladattorles.PNG)
 
 Jogosultságok
-![Jogosultságok](documentation-assets/progress-images/final/jogosultsagok.png)
+![Jogosultságok](documentation-assets/progress-images/final/jogosultsagok.PNG)
 
 Új jogosultság
-![Új jogosultság](documentation-assets/progress-images/final/ujjogosultsag.png)
+![Új jogosultság](documentation-assets/progress-images/final/ujjogosultsag.PNG)
 
 Jogosultság szerkesztése
-![Jogosultság szerkesztése](documentation-assets/progress-images/final/jogosultsagszerkesztes.png)
+![Jogosultság szerkesztése](documentation-assets/progress-images/final/jogosultsagszerkesztes.PNG)
 
 Jogosultság törlés
-![Jogosultság törlés](documentation-assets/progress-images/final/jogosultsagtorles.png)
+![Jogosultság törlés](documentation-assets/progress-images/final/jogosultsagtorles.PNG)
 
 
 # 3. Implementáció
